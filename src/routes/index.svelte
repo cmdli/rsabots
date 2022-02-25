@@ -1,11 +1,11 @@
-<script>
-	import Layout from './__layout.svelte';
+<script lang="ts">
+	import Bot from '$lib/bot.svelte';
 </script>
 
 <div class="flex flex-col items-center w-full h-full">
 	<div class="mt-96 flex flex-col items-center grow">
-		<div class="w-[24rem] max-w-full space-y-4 flex flex-col align-center">
-			<div>Robot</div>
+		<div class="w-[24rem] max-w-full space-y-4 flex flex-col items-center">
+			<Bot />
 			<textarea class="textarea textarea-info" placeholder="Enter Public Key..." />
 			<div class="flex justify-center space-x-4">
 				<div class="btn btn-primary">Random</div>
