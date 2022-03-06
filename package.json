@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"daisyui": "^2.0.6"
+		"daisyui": "^2.0.6",
+		"seedrandom": "^3.0.5"
 	}
 }
