@@ -23,7 +23,7 @@
 
 <div class="part" {style}>
 	{#if imgSrc !== null}
-		<img src={imgSrc} />
+		<img src={imgSrc} aria-hidden="true" alt="Bot Part" />
 	{/if}
 	{#each anchors as anchor}
 		<Part x={anchor[0][0]} y={anchor[0][1]} part={anchor[1]} zIndex={zIndex + 1} />

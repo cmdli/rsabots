@@ -4,7 +4,7 @@
 	const rootPart = rootPattern.resolve();
 </script>
 
-<div class="container">
+<div class="container" aria-hidden={true}>
 	<Part part={rootPart} zIndex={100} x={30} y={30} />
 </div>
 
