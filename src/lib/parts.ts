@@ -6,15 +6,19 @@ function zip<A, B>(array1: A[], array2: B[]): [A, B][] {
 	return result;
 }
 
-class Part {
+export class PartData {
 	imagePath: string | null;
-	anchors: [Anchor, Part][];
-	constructor(imagePath: string | null) {
+	width: number;
+	height: number;
+	anchors: [Anchor, PartData][];
+	constructor(imagePath: string | null, width: number, height: number) {
 		this.anchors = [];
 		this.imagePath = imagePath;
+		this.width = width;
+		this.height = height;
 	}
 
-	addAnchor(x: number, y: number, part: Part) {
+	addAnchor(x: number, y: number, part: PartData) {
 		this.anchors.push([[x, y], part]);
 		return this;
 	}
@@ -26,7 +30,8 @@ type ChoiceSelection = ChoiceResult[];
 
 function randomChoice(selection: ChoiceSelection): ChoiceResult {
 	// TODO: Randomly choose
-	return selection[0];
+	const index = Math.floor(Math.random() * selection.length);
+	return selection[index];
 }
 
 function makeChoice(anchors: Anchor[], choices: Pattern[][]): ChoiceSelection {
@@ -39,11 +44,15 @@ function makeChoice(anchors: Anchor[], choices: Pattern[][]): ChoiceSelection {
 
 class Pattern {
 	background: string | null;
+	width: number;
+	height: number;
 	choices: ChoiceSelection[];
 
-	constructor(background: string | null) {
+	constructor(background: string | null, width: number, height: number) {
 		this.background = background;
 		this.choices = [];
+		this.width = width;
+		this.height = height;
 	}
 
 	addChoice(selection: ChoiceSelection): Pattern {
@@ -51,8 +60,8 @@ class Pattern {
 		return this;
 	}
 
-	resolve(): Part {
-		const result = new Part(this.background);
+	resolve(): PartData {
+		const result = new PartData(this.background, this.width, this.height);
 		for (const choice of this.choices) {
 			const choiceResult = randomChoice(choice);
 			for (const [anchor, pattern] of choiceResult) {
@@ -64,28 +73,31 @@ class Pattern {
 	}
 }
 
-const angryEyes = [new Pattern('eye-left-angry.svg'), new Pattern('eye-right-angry.svg')];
-const sadEyes = [new Pattern('eye-left-sad.svg'), new Pattern('eye-right-sad.svg')];
+const angryEyes = [
+	new Pattern('eye-left-angry.svg', 30, 30),
+	new Pattern('eye-right-angry.svg', 30, 30)
+];
+const sadEyes = [new Pattern('eye-left-sad.svg', 30, 30), new Pattern('eye-right-sad.svg', 30, 30)];
 
-const scowlMouth = new Pattern('mouth-scowl.svg');
-const straightMouth = new Pattern('mouth-straight.svg');
+const scowlMouth = new Pattern('mouth-scowl.svg', 40, 20);
+const straightMouth = new Pattern('mouth-straight.svg', 40, 20);
 
 const bulletEyeAnchors: Anchor[] = [
-	[17, 30],
-	[53, 30]
+	[15, 30],
+	[55, 30]
 ];
-const bulletFace = new Pattern('face-bullet.svg')
+const bulletFace = new Pattern('face-bullet.svg', 100, 125)
 	.addChoice(makeChoice(bulletEyeAnchors, [angryEyes, sadEyes]))
-	.addChoice(makeChoice([[35, 60]], [[scowlMouth], [straightMouth]]));
+	.addChoice(makeChoice([[30, 70]], [[scowlMouth], [straightMouth]]));
 
 const diamondEyeAnchors: Anchor[] = [
-	[17, 50],
-	[53, 50]
+	[30, 35],
+	[90, 35]
 ];
-const diamondFace = new Pattern('face-diamond.svg')
+const diamondFace = new Pattern('face-diamond.svg', 150, 100)
 	.addChoice(makeChoice(diamondEyeAnchors, [angryEyes, sadEyes]))
-	.addChoice(makeChoice([[35, 70]], [[straightMouth], [scowlMouth]]));
+	.addChoice(makeChoice([[55, 70]], [[straightMouth], [scowlMouth]]));
 
-export const rootPattern = new Pattern(null).addChoice(
+export const rootPattern = new Pattern(null, 100, 100).addChoice(
 	makeChoice([[0, 0]], [[bulletFace], [diamondFace]])
 );
