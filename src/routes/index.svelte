@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex flex-col items-center w-full h-full">
-	<div class="mt-96 flex flex-col items-center grow">
+	<div class="mt-24 flex flex-col items-center grow">
 		<div class="w-[24rem] max-w-full space-y-4 flex flex-col items-center">
 			<Bot />
 			<textarea class="textarea textarea-info w-full" placeholder="Enter Public Key..." />
