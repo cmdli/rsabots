@@ -150,14 +150,14 @@ const diamondFace = new Pattern('face-diamond.svg', 150, 100, new Anchor(75, 90)
 const faces = [bulletFace, diamondFace];
 
 const rightArms = [
-	new Pattern('arm-right-bearing.svg', 150, 150, new Anchor(10, 50)),
-	new Pattern('arm-right-diamond.svg', 150, 150, new Anchor(10, 30)),
-	new Pattern('arm-right-lift.svg', 130, 130, new Anchor(10, 45)),
-	new Pattern('arm-right-round.svg', 150, 150, new Anchor(10, 60)),
-	new Pattern('arm-right-scifi.svg', 130, 130, new Anchor(10, 50)),
-	new Pattern('arm-right-scissor.svg', 130, 130, new Anchor(10, 45)),
-	new Pattern('arm-right-square.svg', 130, 130, new Anchor(20, 100)),
-	new Pattern('arm-right-straight.svg', 130, 130, new Anchor(15, 15))
+	new Pattern('arm-right-bearing.svg', 150, 150, new Anchor(10, 115)),
+	new Pattern('arm-right-diamond.svg', 150, 150, new Anchor(10, 75)),
+	new Pattern('arm-right-lift.svg', 130, 130, new Anchor(10, 50)),
+	new Pattern('arm-right-round.svg', 150, 150, new Anchor(10, 95)),
+	new Pattern('arm-right-scifi.svg', 130, 130, new Anchor(10, 63)),
+	new Pattern('arm-right-scissor.svg', 130, 130, new Anchor(10, 59)),
+	new Pattern('arm-right-square.svg', 130, 130, new Anchor(20, 105)),
+	new Pattern('arm-right-straight.svg', 130, 130, new Anchor(15, 33))
 ];
 
 const bodies = [
