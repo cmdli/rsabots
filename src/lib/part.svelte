@@ -14,10 +14,12 @@
 	}
 
 	let imgSrc = part.imagePath ? '/botparts/' + part.imagePath : null;
-	let socketStyle = makeStyle({ left: `${part.socket.x - 2}px`, top: `${part.socket.y - 2}px` });
+	let socketX = Math.floor(part.socket.x * part.width);
+	let socketY = Math.floor(part.socket.y * part.height);
+	let socketStyle = makeStyle({ left: `${socketX - 2}px`, top: `${socketY - 2}px` });
 	let style = makeStyle({
-		left: `${x - part.socket.x}px`,
-		top: `${y - part.socket.y}px`,
+		left: `${x - socketX}px`,
+		top: `${y - socketY}px`,
 		'z-index': zIndex,
 		width: part.width + 'px',
 		height: part.height + 'px'
@@ -40,7 +42,13 @@
 	{/if}
 	{#each anchors as [anchor, partData]}
 		{#if debug}<div style={anchorStyle(anchor)} class="anchor" />{/if}
-		<Part x={anchor.x} y={anchor.y} part={partData} zIndex={zIndex + anchor.zDelta} {debug} />
+		<Part
+			x={anchor.x * part.width}
+			y={anchor.y * part.height}
+			part={partData}
+			zIndex={zIndex + anchor.zDelta}
+			{debug}
+		/>
 	{/each}
 </div>
 
