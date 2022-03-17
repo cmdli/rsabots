@@ -32,8 +32,11 @@
 		height: 600px;
 	}
 	.bot {
+		position: absolute;
 		width: 400px;
 		height: 400px;
+		left: 100px;
+		top: 100px;
 		transform: scale(1.5);
 	}
 </style>
