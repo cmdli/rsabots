@@ -21,8 +21,6 @@ export class Random {
 				this.bits.push((byte >> j) & 0x1);
 			}
 		}
-		console.log(digestView);
-		console.log(this.bits);
 	}
 
 	getBits(num: number): number {
@@ -34,5 +32,59 @@ export class Random {
 			bits = (bits << 1) | this.bits.pop();
 		}
 		return bits;
+	}
+}
+
+const letters = [
+	'a',
+	'b',
+	'c',
+	'd',
+	'e',
+	'f',
+	'g',
+	'h',
+	'i',
+	'j',
+	'k',
+	'l',
+	'm',
+	'n',
+	'o',
+	'p',
+	'q',
+	'r',
+	's',
+	't',
+	'u',
+	'v',
+	'w',
+	'x',
+	'y',
+	'z'
+];
+function randomString(length: number) {
+	let output = '';
+	for (let i = 0; i < length; i++) {
+		output = output + letters[Math.floor(Math.random() * letters.length)];
+	}
+	return output;
+}
+
+export async function testRandom() {
+	const rng = new Random();
+	let buckets = [];
+	for (let i = 0; i < 16; i++) {
+		buckets.push(0);
+	}
+	for (let round = 0; round < 1000; round++) {
+		await rng.seed(randomString(16));
+		for (let i = 0; i < 30; i++) {
+			const num = rng.getBits(4);
+			buckets[num]++;
+		}
+	}
+	for (let i = 0; i < 16; i++) {
+		console.log(i, ':', buckets[i]);
 	}
 }

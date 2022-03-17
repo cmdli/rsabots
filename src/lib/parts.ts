@@ -89,7 +89,6 @@ function randomChoice(selection: ChoiceSelection, rng?: Random): ChoiceResult {
 			numBits++;
 		}
 		const index = rng.getBits(numBits);
-		console.log(numBits, index);
 		return selection[index];
 	} else {
 		const index = Math.floor(Math.random() * selection.length);
