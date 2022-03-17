@@ -1,4 +1,5 @@
 import { zip } from '$lib/util';
+import type { Random } from './random';
 
 export class Anchor {
 	x: number;
@@ -79,10 +80,21 @@ export class PartData {
 type ChoiceResult = [Anchor, Pattern][];
 type ChoiceSelection = ChoiceResult[];
 
-function randomChoice(selection: ChoiceSelection): ChoiceResult {
-	// TODO: Deterministically choose
-	const index = Math.floor(Math.random() * selection.length);
-	return selection[index];
+function randomChoice(selection: ChoiceSelection, rng?: Random): ChoiceResult {
+	if (rng) {
+		let numBits = -1;
+		let length = selection.length;
+		while (length != 0) {
+			length = length >> 1;
+			numBits++;
+		}
+		const index = rng.getBits(numBits);
+		console.log(numBits, index);
+		return selection[index];
+	} else {
+		const index = Math.floor(Math.random() * selection.length);
+		return selection[index];
+	}
 }
 
 function makeChoice(anchors: Anchor[] | Anchor, choices: Pattern[][] | Pattern[]): ChoiceSelection {
@@ -112,12 +124,12 @@ class Pattern {
 		return this;
 	}
 
-	resolve(): PartData {
+	resolve(rng?: Random): PartData {
 		const result = this.basePattern.clone();
 		for (const choice of this.choices) {
-			const choiceResult = randomChoice(choice);
+			const choiceResult = randomChoice(choice, rng);
 			for (const [anchor, pattern] of choiceResult) {
-				result.addSubpart(anchor, pattern.resolve());
+				result.addSubpart(anchor, pattern.resolve(rng));
 			}
 		}
 		return result;
