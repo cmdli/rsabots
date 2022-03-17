@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { rootPattern } from '$lib/parts';
 	import Part from '$lib/part.svelte';
+	import DebugOverlay from './debug-overlay.svelte';
 	const rootPart = rootPattern.resolve();
 </script>
 
 <div class="container" aria-hidden={true}>
-	<Part part={rootPart} zIndex={100} x={0} y={0} debug={true} />
+	<DebugOverlay part={rootPart} x={0} y={0} />
+	<Part part={rootPart} zIndex={100} x={0} y={0} debug={false} />
 </div>
 
 <style>
