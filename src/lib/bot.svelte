@@ -14,5 +14,6 @@
 		position: relative;
 		width: 400px;
 		height: 400px;
+		transform: scale(1.5);
 	}
 </style>

@@ -125,67 +125,67 @@ class Pattern {
 }
 
 const angryEyes = [
-	new Pattern(new PartData('eye-left-angry.svg', 30, 30, new Anchor(0.5, 0.5))),
-	new Pattern(new PartData('eye-right-angry.svg', 30, 30, new Anchor(0.5, 0.5)))
+	new Pattern(new PartData('eye-left-angry.svg', 16, 14, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('eye-right-angry.svg', 16, 14, new Anchor(0.5, 0.5)))
 ];
 const sadEyes = [
-	new Pattern(new PartData('eye-left-sad.svg', 30, 30, new Anchor(0.5, 0.5))),
-	new Pattern(new PartData('eye-right-sad.svg', 30, 30, new Anchor(0.5, 0.5)))
+	new Pattern(new PartData('eye-left-sad.svg', 21, 19, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('eye-right-sad.svg', 18, 17, new Anchor(0.5, 0.5)))
 ];
 const eyes = [angryEyes, sadEyes];
 
 const mouths = [
-	new Pattern(new PartData('mouth-scowl.svg', 40, 20, new Anchor(0.5, 0.5))),
-	new Pattern(new PartData('mouth-straight.svg', 40, 20, new Anchor(0.5, 0.5)))
+	new Pattern(new PartData('mouth-scowl.svg', 20, 12, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-straight.svg', 28, 16, new Anchor(0.5, 0.5)))
 ];
 
-const bulletFace = new Pattern(new PartData('face-bullet.svg', 100, 125, new Anchor(0.5, 0.9)))
+const bulletFace = new Pattern(new PartData('face-bullet.svg', 72, 88, new Anchor(0.5, 0.9)))
 	.addChoice([new Anchor(0.3, 0.35), new Anchor(0.7, 0.35)], eyes)
 	.addChoice(new Anchor(0.5, 0.65), mouths);
 
-const diamondFace = new Pattern(new PartData('face-diamond.svg', 150, 100, new Anchor(0.5, 0.9)))
+const diamondFace = new Pattern(new PartData('face-diamond.svg', 93, 68, new Anchor(0.5, 0.9)))
 	.addChoice([new Anchor(0.33, 0.45), new Anchor(0.66, 0.45)], eyes)
 	.addChoice(new Anchor(0.5, 0.75), mouths);
 
 const faces = [bulletFace, diamondFace];
 
 const armsData = [
-	new PartData('arm-right-bearing.svg', 150, 150, new Anchor(0.05, 0.75)),
-	new PartData('arm-right-diamond.svg', 150, 150, new Anchor(0.05, 0.5)),
-	new PartData('arm-right-lift.svg', 130, 130, new Anchor(0.05, 0.4)),
-	new PartData('arm-right-round.svg', 150, 150, new Anchor(0.05, 0.65)),
-	new PartData('arm-right-scifi.svg', 130, 130, new Anchor(0.05, 0.5)),
-	new PartData('arm-right-scissor.svg', 130, 130, new Anchor(0.05, 0.45)),
-	new PartData('arm-right-square.svg', 130, 130, new Anchor(0.1, 0.8)),
-	new PartData('arm-right-straight.svg', 130, 130, new Anchor(0.08, 0.25))
+	new PartData('arm-right-bearing.svg', 107, 76, new Anchor(0.05, 0.75)),
+	new PartData('arm-right-diamond.svg', 102, 63, new Anchor(0.05, 0.5)),
+	new PartData('arm-right-lift.svg', 101, 96, new Anchor(0.05, 0.4)),
+	new PartData('arm-right-round.svg', 117, 67, new Anchor(0.05, 0.05)),
+	new PartData('arm-right-scifi.svg', 104, 85, new Anchor(0.05, 0.5)),
+	new PartData('arm-right-scissor.svg', 105, 81, new Anchor(0.05, 0.45)),
+	new PartData('arm-right-square.svg', 77, 69, new Anchor(0.1, 0.8)),
+	new PartData('arm-right-straight.svg', 90, 65, new Anchor(0.08, 0.25))
 ];
 const rightArms = armsData.map((data) => new Pattern(data));
 const leftArms = armsData.map((data) => new Pattern(data.flipHorizontal()));
 
 const legData = [
-	new PartData('leg-right-angle.svg', 100, 100, new Anchor(0.27, 0.2)),
-	new PartData('leg-right-bearing.svg', 100, 100, new Anchor(0.35, 0.1)),
-	new PartData('leg-right-diamond.svg', 100, 100, new Anchor(0.5, 0.1)),
-	new PartData('leg-right-round.svg', 100, 100, new Anchor(0.15, 0.13)),
-	new PartData('leg-right-straight.svg', 100, 100, new Anchor(0.5, 0.2)),
-	new PartData('leg-right-telescope.svg', 100, 100, new Anchor(0.35, 0.15))
+	new PartData('leg-right-angle.svg', 66, 90, new Anchor(0.27, 0.1)),
+	new PartData('leg-right-bearing.svg', 45, 88, new Anchor(0.35, 0.1)),
+	new PartData('leg-right-diamond.svg', 51, 89, new Anchor(0.5, 0.1)),
+	new PartData('leg-right-round.svg', 101, 95, new Anchor(0.15, 0.15)),
+	new PartData('leg-right-straight.svg', 32, 89, new Anchor(0.5, 0.1)),
+	new PartData('leg-right-telescope.svg', 57, 91, new Anchor(0.35, 0.1))
 ];
 const rightLegs = legData.map((data) => new Pattern(data));
 const leftLegs = legData.map((data) => new Pattern(data.flipHorizontal()));
 
 const bodies = [
-	new Pattern(new PartData('body-square.svg', 100, 150, new Anchor(0.5, 0.5)))
+	new Pattern(new PartData('body-square.svg', 80, 115, new Anchor(0.5, 0.5)))
 		.addChoice(new Anchor(0.5, 0.05), faces)
 		.addChoice(new Anchor(0.8, 0.4, -1), rightArms)
 		.addChoice(new Anchor(0.2, 0.4, -1), leftArms)
-		.addChoice(new Anchor(0.8, 0.8, -1), rightLegs)
-		.addChoice(new Anchor(0.2, 0.8, -1), leftLegs),
-	new Pattern(new PartData('body-diamond.svg', 200, 150, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.8, 0.9, -1), rightLegs)
+		.addChoice(new Anchor(0.2, 0.9, -1), leftLegs),
+	new Pattern(new PartData('body-diamond.svg', 142, 103, new Anchor(0.5, 0.5)))
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
-		.addChoice(new Anchor(0.7, 0.7, -1), rightLegs)
-		.addChoice(new Anchor(0.3, 0.7, -1), leftLegs)
+		.addChoice(new Anchor(0.6, 0.8, -1), rightLegs)
+		.addChoice(new Anchor(0.4, 0.8, -1), leftLegs)
 ];
 
 export const rootPattern = new Pattern(new PartData(null, 400, 400)).addChoice(
