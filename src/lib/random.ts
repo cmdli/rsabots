@@ -1,3 +1,13 @@
+/*
+
+This is a random number generator built for the purposes of consistency across
+platforms. It is NOT intended to be a good random number generator for long
+periods, ease of use, or efficient use of entropy.
+
+*/
+
+const salt = Uint8Array.of(231, 126, 79, 196, 212, 85, 119, 77, 234, 240, 46, 38, 23, 19, 169, 193);
+
 export class Random {
 	bits: number[] | null;
 	index: number;
@@ -12,8 +22,25 @@ export class Random {
 		for (let i = 0; i < dataString.length; i++) {
 			view[i] = dataString.charCodeAt(i);
 		}
-		const digest = await crypto.subtle.digest('SHA-256', data);
-		const digestView = new Uint8Array(digest);
+		const enc = new TextEncoder();
+		const key = await crypto.subtle.importKey(
+			'raw',
+			enc.encode(dataString),
+			{ name: 'PBKDF2' },
+			false,
+			['deriveBits', 'deriveKey']
+		);
+		const randomBits = await crypto.subtle.deriveBits(
+			{
+				name: 'PBKDF2',
+				iterations: 100000,
+				salt: salt,
+				hash: 'SHA-256'
+			},
+			key,
+			256
+		);
+		const digestView = new Uint8Array(randomBits);
 		this.bits = [];
 		for (let i = 0; i < digestView.length; i++) {
 			const byte = digestView[i];
