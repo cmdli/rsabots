@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Bot from '$lib/bot.svelte';
 
-	let seed = 'test';
+	let seed = '';
 </script>
 
 <div class="flex flex-col items-center w-full h-full">
@@ -16,10 +16,10 @@
 			<div class="flex justify-center space-x-4">
 				<div class="btn btn-primary">Random</div>
 				<div class="dropdown">
-					<button class="btn btn-primary"
-						>Download
-						<div class="arrow" /></button
-					>
+					<button class="btn btn-primary">
+						Download
+						<div class="arrow" />
+					</button>
 					<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
 						<li><a href="/">SVG</a></li>
 						<li><a href="/">PNG</a></li>
