@@ -1,13 +1,25 @@
 <script lang="ts">
 	import Bot from '$lib/bot.svelte';
 
+	let downloadFunc = null;
+	function download() {
+		if (downloadFunc) {
+			downloadFunc();
+		}
+	}
+
 	let seed = '';
 </script>
 
 <div class="flex flex-col items-center w-full h-full">
 	<div class="mt-24 flex flex-col items-center grow">
 		<div class="w-[24rem] max-w-full space-y-4 flex flex-col items-center">
-			<Bot {seed} />
+			<Bot
+				{seed}
+				registerDownload={(func) => {
+					downloadFunc = func;
+				}}
+			/>
 			<textarea
 				bind:value={seed}
 				class="textarea textarea-info w-full"
@@ -22,7 +34,7 @@
 					</button>
 					<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
 						<li><a href="/">SVG</a></li>
-						<li><a href="/">PNG</a></li>
+						<li><a href="/" on:click={download}>PNG</a></li>
 					</ul>
 				</div>
 			</div>
