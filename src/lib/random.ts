@@ -1,11 +1,3 @@
-/*
-
-This is a random number generator built for the purposes of consistency across
-platforms. It is NOT intended to be a good random number generator for long
-periods, ease of use, or efficient use of entropy.
-
-*/
-
 const salt = Uint8Array.of(231, 126, 79, 196, 212, 85, 119, 77, 234, 240, 46, 38, 23, 19, 169, 193);
 
 export class Random {
