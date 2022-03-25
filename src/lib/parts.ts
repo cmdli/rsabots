@@ -193,7 +193,32 @@ const bodies = [
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
-		.addChoice([new Anchor(0.35, 0.75, -1), new Anchor(0.65, 0.75, -1)], legPairs)
+		.addChoice([new Anchor(0.35, 0.75, -1), new Anchor(0.65, 0.75, -1)], legPairs),
+	new Pattern(new PartData('body-circle.png', 110, 104, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.5, 0.2), faces)
+		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
+		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
+		.addChoice([new Anchor(0.2, 0.8, -1), new Anchor(0.8, 0.8, -1)], legPairs),
+	new Pattern(new PartData('body-drill.png', 105, 95, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.5, 0.1), faces)
+		.addChoice(new Anchor(0.7, 0.5, -1), rightArms)
+		.addChoice(new Anchor(0.3, 0.5, -1), leftArms)
+		.addChoice([new Anchor(0.4, 0.7, -1), new Anchor(0.6, 0.7, -1)], legPairs),
+	new Pattern(new PartData('body-hexagon.png', 106, 97, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.5, 0.1), faces)
+		.addChoice(new Anchor(0.8, 0.5, -1), rightArms)
+		.addChoice(new Anchor(0.2, 0.5, -1), leftArms)
+		.addChoice([new Anchor(0.3, 0.8, -1), new Anchor(0.7, 0.8, -1)], legPairs),
+	new Pattern(new PartData('body-peanut.png', 70, 127, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.5, 0.1), faces)
+		.addChoice(new Anchor(0.8, 0.25, -1), rightArms)
+		.addChoice(new Anchor(0.2, 0.25, -1), leftArms)
+		.addChoice([new Anchor(0.2, 0.75, -1), new Anchor(0.8, 0.75, -1)], legPairs),
+	new Pattern(new PartData('body-star.png', 91, 91, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.5, 0.2), faces)
+		.addChoice(new Anchor(0.9, 0.2, -1), rightArms)
+		.addChoice(new Anchor(0.1, 0.2, -1), leftArms)
+		.addChoice([new Anchor(0.1, 0.8, -1), new Anchor(0.9, 0.8, -1)], legPairs)
 ];
 
 export const rootPattern = new Pattern(new PartData(null, 450, 300)).addChoice(

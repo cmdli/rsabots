@@ -40,9 +40,7 @@ export async function renderPart(
 		if (anchor.zDelta < 0) {
 			const anchorX = Math.floor(anchor.x * part.width) * BOT_SCALE;
 			const anchorY = Math.floor(anchor.y * part.height) * BOT_SCALE;
-			console.log(anchorX, anchorY);
 			await renderPart(context, subpart, x + anchorX, y + anchorY);
-			context.fillRect(x + anchorX - 2, y + anchorY - 2, 4, 4);
 		}
 	}
 	console.log('Drawing', part.imagePath, x, y);
@@ -68,9 +66,36 @@ export async function renderPart(
 		if (anchor.zDelta >= 0) {
 			const anchorX = Math.floor(anchor.x * part.width) * BOT_SCALE;
 			const anchorY = Math.floor(anchor.y * part.height) * BOT_SCALE;
-			console.log(anchorX, anchorY);
 			await renderPart(context, subpart, x + anchorX, y + anchorY);
-			context.fillRect(x + anchorX - 2, y + anchorY - 2, 4, 4);
+		}
+	}
+}
+
+export async function renderDebugOverlay(
+	context: CanvasRenderingContext2D,
+	part: PartData,
+	x: number,
+	y: number
+) {
+	context.fillStyle = 'red';
+	context.fillRect(x - 2 * BOT_SCALE, y - 2 * BOT_SCALE, 4 * BOT_SCALE, 4 * BOT_SCALE);
+	const socketX = Math.floor(part.socket.x * part.width) * BOT_SCALE;
+	const socketY = Math.floor(part.socket.y * part.height) * BOT_SCALE;
+	x = x - socketX;
+	y = y - socketY;
+
+	for (const [anchor, subpart] of part.anchors) {
+		if (anchor.zDelta < 0) {
+			const anchorX = Math.floor(anchor.x * part.width) * BOT_SCALE;
+			const anchorY = Math.floor(anchor.y * part.height) * BOT_SCALE;
+			await renderDebugOverlay(context, subpart, x + anchorX, y + anchorY);
+		}
+	}
+	for (const [anchor, subpart] of part.anchors) {
+		if (anchor.zDelta >= 0) {
+			const anchorX = Math.floor(anchor.x * part.width) * BOT_SCALE;
+			const anchorY = Math.floor(anchor.y * part.height) * BOT_SCALE;
+			await renderDebugOverlay(context, subpart, x + anchorX, y + anchorY);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { PartData } from './parts';
-	import { renderPart, BOT_SCALE, downloadAsImage } from './render';
+	import { renderPart, BOT_SCALE, downloadAsImage, renderDebugOverlay } from './render';
 
 	export let part: PartData;
 	export let registerDownload: (func: () => void) => void;
@@ -11,7 +11,9 @@
 		canvas.width *= BOT_SCALE;
 		canvas.height *= BOT_SCALE;
 		const context = canvas.getContext('2d');
-		renderPart(context, part, 0, 0);
+		renderPart(context, part, 0, 0).then(() => {
+			renderDebugOverlay(context, part, 0, 0);
+		});
 	});
 
 	function download() {
