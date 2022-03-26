@@ -45,7 +45,7 @@ export async function renderPart(
 	}
 	console.log('Drawing', part.imagePath, x, y);
 	if (part.imagePath) {
-		const image = await imageDirectory.getImage('/static/botparts/' + part.imagePath);
+		const image = await imageDirectory.getImage('/botparts/' + part.imagePath);
 		context.save();
 		context.resetTransform();
 		context.translate(x, y);

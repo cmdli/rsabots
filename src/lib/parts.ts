@@ -150,15 +150,35 @@ const mouths = [
 	new Pattern(new PartData('mouth-straight.png', 21, 12, new Anchor(0.5, 0.5)))
 ];
 
-const bulletFace = new Pattern(new PartData('face-bullet.png', 72, 88, new Anchor(0.5, 0.9)))
-	.addChoice([new Anchor(0.35, 0.3), new Anchor(0.75, 0.3)], eyes)
-	.addChoice(new Anchor(0.55, 0.55), mouths);
-
-const diamondFace = new Pattern(new PartData('face-diamond.png', 93, 68, new Anchor(0.5, 0.9)))
-	.addChoice([new Anchor(0.33, 0.45), new Anchor(0.66, 0.45)], eyes)
-	.addChoice(new Anchor(0.5, 0.75), mouths);
-
-const faces = [bulletFace, diamondFace];
+const faces = [
+	new Pattern(new PartData('face-bullet.png', 72, 88, new Anchor(0.5, 0.9)))
+		.addChoice([new Anchor(0.35, 0.3), new Anchor(0.75, 0.3)], eyes)
+		.addChoice(new Anchor(0.55, 0.55), mouths),
+	new Pattern(new PartData('face-diamond.png', 93, 68, new Anchor(0.5, 0.9)))
+		.addChoice([new Anchor(0.33, 0.45), new Anchor(0.66, 0.45)], eyes)
+		.addChoice(new Anchor(0.5, 0.75), mouths),
+	new Pattern(new PartData('face-cap.png', 79, 51, new Anchor(0.5, 0.8)))
+		.addChoice([new Anchor(0.25, 0.5), new Anchor(0.75, 0.5)], eyes)
+		.addChoice(new Anchor(0.5, 0.7), mouths),
+	new Pattern(new PartData('face-circle.png', 75, 66, new Anchor(0.5, 0.8)))
+		.addChoice([new Anchor(0.25, 0.45), new Anchor(0.75, 0.35)], eyes)
+		.addChoice(new Anchor(0.55, 0.75), mouths),
+	new Pattern(new PartData('face-drill.png', 83, 76, new Anchor(0.5, 0.8)))
+		.addChoice([new Anchor(0.3, 0.25), new Anchor(0.7, 0.25)], eyes)
+		.addChoice(new Anchor(0.5, 0.65), mouths),
+	new Pattern(new PartData('face-hexagon.png', 79, 72, new Anchor(0.5, 0.8)))
+		.addChoice([new Anchor(0.25, 0.45), new Anchor(0.75, 0.45)], eyes)
+		.addChoice(new Anchor(0.45, 0.7), mouths),
+	new Pattern(new PartData('face-peanut.png', 108, 66, new Anchor(0.5, 0.9)))
+		.addChoice([new Anchor(0.25, 0.4), new Anchor(0.75, 0.4)], eyes)
+		.addChoice(new Anchor(0.5, 0.4), mouths),
+	new Pattern(new PartData('face-pyramid.png', 83, 76, new Anchor(0.5, 0.9)))
+		.addChoice([new Anchor(0.25, 0.75), new Anchor(0.75, 0.75)], eyes)
+		.addChoice(new Anchor(0.5, 0.4), mouths),
+	new Pattern(new PartData('face-star.png', 105, 105, new Anchor(0.5, 0.8)))
+		.addChoice([new Anchor(0.3, 0.5), new Anchor(0.7, 0.5)], eyes)
+		.addChoice(new Anchor(0.5, 0.65), mouths)
+];
 
 const armsData = [
 	new PartData('arm-right-bearing.png', 107, 76, new Anchor(0.05, 0.8)),
@@ -218,7 +238,12 @@ const bodies = [
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.2, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.2, -1), leftArms)
-		.addChoice([new Anchor(0.1, 0.8, -1), new Anchor(0.9, 0.8, -1)], legPairs)
+		.addChoice([new Anchor(0.1, 0.8, -1), new Anchor(0.9, 0.8, -1)], legPairs),
+	new Pattern(new PartData('body-tee.png', 84, 92, new Anchor(0.5, 0.5)))
+		.addChoice(new Anchor(0.5, 0.1), faces)
+		.addChoice(new Anchor(0.9, 0.2, -1), rightArms)
+		.addChoice(new Anchor(0.1, 0.2, -1), leftArms)
+		.addChoice([new Anchor(0.45, 0.8, -1), new Anchor(0.55, 0.8, -1)], legPairs)
 ];
 
 export const rootPattern = new Pattern(new PartData(null, 450, 300)).addChoice(
