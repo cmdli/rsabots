@@ -129,25 +129,6 @@ class Pattern {
 	}
 }
 
-const angryEyes = [
-	new Pattern(new PartData('eye-left-angry.png', 16, 14, new Anchor(0.5, 0.5))),
-	new Pattern(new PartData('eye-right-angry.png', 16, 14, new Anchor(0.5, 0.5)))
-];
-const sadEyes = [
-	new Pattern(new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5))),
-	new Pattern(new PartData('eye-right-sad.png', 18, 17, new Anchor(0.5, 0.5)))
-];
-const oldEyes = [
-	[
-		new Pattern(new PartData('eye-left-angry.png', 16, 14, new Anchor(0.5, 0.5))),
-		new Pattern(new PartData('eye-right-angry.png', 16, 14, new Anchor(0.5, 0.5)))
-	],
-	[
-		new Pattern(new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5))),
-		new Pattern(new PartData('eye-right-sad.png', 18, 17, new Anchor(0.5, 0.5)))
-	],
-	[new Pattern(new PartData('eye-frown.png', 16, 8, new Anchor(0.5, 0.5)))]
-];
 const leftEyes = [
 	new PartData('eye-left-angry.png', 16, 14, new Anchor(0.5, 0.5)),
 	new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5)),
