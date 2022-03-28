@@ -81,19 +81,13 @@ type ChoiceResult = [Anchor, Pattern][];
 type ChoiceSelection = ChoiceResult[];
 
 function randomChoice(selection: ChoiceSelection, rng?: Random): ChoiceResult {
+	let index;
 	if (rng) {
-		let numBits = -1;
-		let length = selection.length;
-		while (length != 0) {
-			length = length >> 1;
-			numBits++;
-		}
-		const index = rng.getBits(numBits);
-		return selection[index];
+		index = Math.floor(rng.random() * selection.length);
 	} else {
-		const index = Math.floor(Math.random() * selection.length);
-		return selection[index];
+		index = Math.floor(Math.random() * selection.length);
 	}
+	return selection[index];
 }
 
 function makeChoice(anchors: Anchor[] | Anchor, choices: Pattern[][] | Pattern[]): ChoiceSelection {
@@ -143,7 +137,25 @@ const sadEyes = [
 	new Pattern(new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5))),
 	new Pattern(new PartData('eye-right-sad.png', 18, 17, new Anchor(0.5, 0.5)))
 ];
-const eyes = [angryEyes, sadEyes];
+const oldEyes = [
+	[
+		new Pattern(new PartData('eye-left-angry.png', 16, 14, new Anchor(0.5, 0.5))),
+		new Pattern(new PartData('eye-right-angry.png', 16, 14, new Anchor(0.5, 0.5)))
+	],
+	[
+		new Pattern(new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5))),
+		new Pattern(new PartData('eye-right-sad.png', 18, 17, new Anchor(0.5, 0.5)))
+	],
+	[new Pattern(new PartData('eye-frown.png', 16, 8, new Anchor(0.5, 0.5)))]
+];
+const leftEyes = [
+	new PartData('eye-left-angry.png', 16, 14, new Anchor(0.5, 0.5)),
+	new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5)),
+	new PartData('eye-frown.png', 16, 8, new Anchor(0.5, 0.5)),
+	new PartData('eye-round.png', 14, 14, new Anchor(0.5, 0.5)),
+	new PartData('eye-smile.png', 16, 8, new Anchor(0.5, 0.5))
+];
+const eyes = leftEyes.map((eye) => [new Pattern(eye), new Pattern(eye.flipHorizontal())]);
 
 const mouths = [
 	new Pattern(new PartData('mouth-scowl.png', 20, 12, new Anchor(0.5, 0.5))),
