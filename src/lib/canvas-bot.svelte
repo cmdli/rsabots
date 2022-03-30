@@ -12,7 +12,7 @@
 		canvas.height *= BOT_SCALE;
 		const context = canvas.getContext('2d');
 		renderPart(context, part, 0, 0).then(() => {
-			renderDebugOverlay(context, part, 0, 0);
+			//renderDebugOverlay(context, part, 0, 0);
 		});
 	});
 

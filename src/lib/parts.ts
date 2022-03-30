@@ -134,13 +134,23 @@ const leftEyes = [
 	new PartData('eye-left-sad.png', 21, 19, new Anchor(0.5, 0.5)),
 	new PartData('eye-frown.png', 16, 8, new Anchor(0.5, 0.5)),
 	new PartData('eye-round.png', 14, 14, new Anchor(0.5, 0.5)),
-	new PartData('eye-smile.png', 16, 8, new Anchor(0.5, 0.5))
+	new PartData('eye-smile.png', 16, 8, new Anchor(0.5, 0.5)),
+	new PartData('eye-left-bored.png', 16, 2, new Anchor(0.5, 0.5)),
+	new PartData('eye-left-slant.png', 13, 13, new Anchor(0.5, 0.5))
 ];
 const eyes = leftEyes.map((eye) => [new Pattern(eye), new Pattern(eye.flipHorizontal())]);
+const shiftyEye = new PartData('eye-left-shifty.png', 16, 11, new Anchor(0.5, 0.5));
+eyes.push([new Pattern(shiftyEye), new Pattern(shiftyEye)]);
 
 const mouths = [
-	new Pattern(new PartData('mouth-scowl.png', 20, 12, new Anchor(0.5, 0.5))),
-	new Pattern(new PartData('mouth-straight.png', 21, 12, new Anchor(0.5, 0.5)))
+	new Pattern(new PartData('mouth-scowl.png', 22, 14, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-straight.png', 21, 12, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-grin.png', 22, 14, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-small.png', 9, 4, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-smirk.png', 21, 7, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-surprise.png', 14, 11, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-tongue.png', 21, 9, new Anchor(0.5, 0.5))),
+	new Pattern(new PartData('mouth-disappoint.png', 20, 5, new Anchor(0.5, 0.5)))
 ];
 
 const faces = [
