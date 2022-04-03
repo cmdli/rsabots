@@ -1,4 +1,4 @@
-import * as seedrandom from 'seedrandom';
+import seedrandom from 'seedrandom';
 
 const salt = Uint8Array.of(231, 126, 79, 196, 212, 85, 119, 77, 234, 240, 46, 38, 23, 19, 169, 193);
 
