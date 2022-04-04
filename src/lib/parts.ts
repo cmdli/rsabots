@@ -139,6 +139,7 @@ const leftEyes = [
 	new PartData('eye-left-slant.png', 13, 13, new Anchor(0.5, 0.5))
 ];
 const eyes = leftEyes.map((eye) => [new Pattern(eye), new Pattern(eye.flipHorizontal())]);
+// Add shift eyes after because they aren't supposed to be flipped
 const shiftyEye = new PartData('eye-left-shifty.png', 16, 11, new Anchor(0.5, 0.5));
 eyes.push([new Pattern(shiftyEye), new Pattern(shiftyEye)]);
 
