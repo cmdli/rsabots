@@ -56,8 +56,6 @@ export async function renderPart(
 			context.scale(1, -1);
 			context.translate(0, -(BOT_SCALE * part.height));
 		}
-		context.fillStyle = 'red';
-		context.fillRect(0, 0, 2, 2);
 		context.drawImage(image, 0, 0, part.width * BOT_SCALE, part.height * BOT_SCALE);
 		context.restore();
 	}

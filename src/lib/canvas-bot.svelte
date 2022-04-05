@@ -25,7 +25,7 @@
 	}
 </script>
 
-<canvas id="canvas-bot" class="canvas-bot" width="450" height="300" />
+<canvas id="canvas-bot" class="canvas-bot" width="525" height="350" />
 
 <style>
 	.canvas-bot {

@@ -154,34 +154,65 @@ const mouths = [
 	new Pattern(new PartData('mouth-disappoint.png', 20, 5, new Anchor(0.5, 0.5)))
 ];
 
+const antennaeData = [
+	new PartData('antenna-right-circles.png', 27, 28, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-dish.png', 30, 27, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-flop.png', 46, 19, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-fork.png', 37, 36, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-ray.png', 27, 26, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-sphere.png', 40, 38, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-square.png', 34, 33, new Anchor(0.1, 0.9)),
+	new PartData('antenna-right-star.png', 24, 24, new Anchor(0.1, 0.9))
+];
+const rightAntennae = antennaeData.map((data) => new Pattern(data));
+const leftAntennae = antennaeData.map((data) => new Pattern(data.flipHorizontal()));
+
 const faces = [
 	new Pattern(new PartData('face-bullet.png', 72, 88, new Anchor(0.5, 0.9)))
 		.addChoice([new Anchor(0.35, 0.3), new Anchor(0.75, 0.3)], eyes)
-		.addChoice(new Anchor(0.55, 0.55), mouths),
+		.addChoice(new Anchor(0.55, 0.55), mouths)
+		.addChoice(new Anchor(0.85, 0.12, -1), rightAntennae)
+		.addChoice(new Anchor(0.15, 0.12, -1), leftAntennae),
 	new Pattern(new PartData('face-diamond.png', 93, 68, new Anchor(0.5, 0.9)))
 		.addChoice([new Anchor(0.33, 0.45), new Anchor(0.66, 0.45)], eyes)
-		.addChoice(new Anchor(0.5, 0.75), mouths),
+		.addChoice(new Anchor(0.5, 0.75), mouths)
+		.addChoice(new Anchor(0.75, 0.3, -1), rightAntennae)
+		.addChoice(new Anchor(0.25, 0.3, -1), leftAntennae),
 	new Pattern(new PartData('face-cap.png', 79, 51, new Anchor(0.5, 0.8)))
 		.addChoice([new Anchor(0.25, 0.5), new Anchor(0.75, 0.5)], eyes)
-		.addChoice(new Anchor(0.5, 0.7), mouths),
+		.addChoice(new Anchor(0.5, 0.7), mouths)
+		.addChoice(new Anchor(0.8, 0.3, -1), rightAntennae)
+		.addChoice(new Anchor(0.2, 0.3, -1), leftAntennae),
 	new Pattern(new PartData('face-circle.png', 75, 66, new Anchor(0.5, 0.8)))
 		.addChoice([new Anchor(0.25, 0.45), new Anchor(0.75, 0.35)], eyes)
-		.addChoice(new Anchor(0.55, 0.75), mouths),
+		.addChoice(new Anchor(0.55, 0.75), mouths)
+		.addChoice(new Anchor(0.8, 0.2, -1), rightAntennae)
+		.addChoice(new Anchor(0.2, 0.2, -1), leftAntennae),
 	new Pattern(new PartData('face-drill.png', 83, 76, new Anchor(0.5, 0.8)))
 		.addChoice([new Anchor(0.3, 0.25), new Anchor(0.7, 0.25)], eyes)
-		.addChoice(new Anchor(0.5, 0.65), mouths),
+		.addChoice(new Anchor(0.5, 0.65), mouths)
+		.addChoice(new Anchor(0.95, 0.12, -1), rightAntennae)
+		.addChoice(new Anchor(0.05, 0.12, -1), leftAntennae),
 	new Pattern(new PartData('face-hexagon.png', 79, 72, new Anchor(0.5, 0.8)))
 		.addChoice([new Anchor(0.25, 0.45), new Anchor(0.75, 0.45)], eyes)
-		.addChoice(new Anchor(0.45, 0.7), mouths),
+		.addChoice(new Anchor(0.45, 0.7), mouths)
+		.addChoice(new Anchor(0.75, 0.1, -1), rightAntennae)
+		.addChoice(new Anchor(0.25, 0.1, -1), leftAntennae),
 	new Pattern(new PartData('face-peanut.png', 108, 66, new Anchor(0.5, 0.9)))
 		.addChoice([new Anchor(0.25, 0.4), new Anchor(0.75, 0.4)], eyes)
-		.addChoice(new Anchor(0.5, 0.4), mouths),
+		.addChoice(new Anchor(0.5, 0.4), mouths)
+		.addChoice(new Anchor(0.9, 0.15, -1), rightAntennae)
+		.addChoice(new Anchor(0.1, 0.15, -1), leftAntennae),
 	new Pattern(new PartData('face-pyramid.png', 83, 76, new Anchor(0.5, 0.9)))
 		.addChoice([new Anchor(0.25, 0.75), new Anchor(0.75, 0.75)], eyes)
-		.addChoice(new Anchor(0.5, 0.4), mouths),
+		.addChoice(new Anchor(0.5, 0.4), mouths)
+		.addChoice(new Anchor(0.7, 0.25, -1), rightAntennae)
+		.addChoice(new Anchor(0.3, 0.25, -1), leftAntennae),
 	new Pattern(new PartData('face-star.png', 105, 105, new Anchor(0.5, 0.8)))
 		.addChoice([new Anchor(0.3, 0.5), new Anchor(0.7, 0.5)], eyes)
 		.addChoice(new Anchor(0.5, 0.65), mouths)
+		.addChoice(new Anchor(0.8, 0.4, -1), rightAntennae)
+		.addChoice(new Anchor(0.2, 0.4, -1), leftAntennae)
 ];
 
 const armsData = [
@@ -250,7 +281,7 @@ const bodies = [
 	// 	.addChoice([new Anchor(0.45, 0.8, -1), new Anchor(0.55, 0.8, -1)], legPairs)
 ];
 
-export const rootPattern = new Pattern(new PartData(null, 450, 300)).addChoice(
+export const rootPattern = new Pattern(new PartData(null, 525, 350)).addChoice(
 	new Anchor(0.5, 0.5),
 	bodies
 );
