@@ -167,6 +167,17 @@ const antennaeData = [
 const rightAntennae = antennaeData.map((data) => new Pattern(data));
 const leftAntennae = antennaeData.map((data) => new Pattern(data.flipHorizontal()));
 
+const symbols = [
+	new PartData('symbol-c.png', 15, 19, new Anchor(0.5, 0.5)),
+	new PartData('symbol-diamond.png', 22, 19, new Anchor(0.5, 0.5)),
+	new PartData('symbol-eye.png', 25, 18, new Anchor(0.5, 0.5)),
+	new PartData('symbol-octagon.png', 23, 23, new Anchor(0.5, 0.5)),
+	new PartData('symbol-star-6.png', 22, 24, new Anchor(0.5, 0.5)),
+	new PartData('symbol-star.png', 24, 24, new Anchor(0.5, 0.5)),
+	new PartData('symbol-x.png', 19, 19, new Anchor(0.5, 0.5)),
+	new PartData(null, 10, 10, new Anchor(0.5, 0.5))
+].map((data) => new Pattern(data));
+
 const faces = [
 	new Pattern(new PartData('face-bullet.png', 72, 88, new Anchor(0.5, 0.9)))
 		.addChoice([new Anchor(0.35, 0.3), new Anchor(0.75, 0.3)], eyes)
@@ -243,27 +254,32 @@ const bodies = [
 		.addChoice(new Anchor(0.5, 0.05), faces)
 		.addChoice(new Anchor(0.8, 0.4, -1), rightArms)
 		.addChoice(new Anchor(0.2, 0.4, -1), leftArms)
-		.addChoice([new Anchor(0.2, 0.9, -1), new Anchor(0.8, 0.9, -1)], legPairs),
+		.addChoice([new Anchor(0.2, 0.9, -1), new Anchor(0.8, 0.9, -1)], legPairs)
+		.addChoice(new Anchor(0.7, 0.3), symbols),
 	new Pattern(new PartData('body-diamond.png', 142, 103, new Anchor(0.5, 0.5)))
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
-		.addChoice([new Anchor(0.35, 0.75, -1), new Anchor(0.65, 0.75, -1)], legPairs),
+		.addChoice([new Anchor(0.35, 0.75, -1), new Anchor(0.65, 0.75, -1)], legPairs)
+		.addChoice(new Anchor(0.3, 0.4), symbols),
 	new Pattern(new PartData('body-circle.png', 110, 104, new Anchor(0.5, 0.5)))
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
-		.addChoice([new Anchor(0.2, 0.8, -1), new Anchor(0.8, 0.8, -1)], legPairs),
+		.addChoice([new Anchor(0.2, 0.8, -1), new Anchor(0.8, 0.8, -1)], legPairs)
+		.addChoice(new Anchor(0.4, 0.7), symbols),
 	new Pattern(new PartData('body-drill.png', 105, 95, new Anchor(0.5, 0.5)))
 		.addChoice(new Anchor(0.5, 0.1), faces)
 		.addChoice(new Anchor(0.7, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.3, 0.5, -1), leftArms)
-		.addChoice([new Anchor(0.4, 0.7, -1), new Anchor(0.6, 0.7, -1)], legPairs),
+		.addChoice([new Anchor(0.4, 0.7, -1), new Anchor(0.6, 0.7, -1)], legPairs)
+		.addChoice(new Anchor(0.7, 0.3), symbols),
 	new Pattern(new PartData('body-hexagon.png', 106, 97, new Anchor(0.5, 0.5)))
 		.addChoice(new Anchor(0.5, 0.1), faces)
 		.addChoice(new Anchor(0.8, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.2, 0.5, -1), leftArms)
-		.addChoice([new Anchor(0.3, 0.8, -1), new Anchor(0.7, 0.8, -1)], legPairs),
+		.addChoice([new Anchor(0.3, 0.8, -1), new Anchor(0.7, 0.8, -1)], legPairs)
+		.addChoice(new Anchor(0.5, 0.5), symbols),
 	// new Pattern(new PartData('body-peanut.png', 70, 127, new Anchor(0.5, 0.5)))
 	// 	.addChoice(new Anchor(0.5, 0.1), faces)
 	// 	.addChoice(new Anchor(0.8, 0.25, -1), rightArms)
@@ -274,6 +290,7 @@ const bodies = [
 		.addChoice(new Anchor(0.9, 0.2, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.2, -1), leftArms)
 		.addChoice([new Anchor(0.1, 0.8, -1), new Anchor(0.9, 0.8, -1)], legPairs)
+		.addChoice(new Anchor(0.7, 0.7), symbols)
 	// new Pattern(new PartData('body-tee.png', 84, 92, new Anchor(0.5, 0.5)))
 	// 	.addChoice(new Anchor(0.5, 0.1), faces)
 	// 	.addChoice(new Anchor(0.9, 0.2, -1), rightArms)
