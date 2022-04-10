@@ -43,8 +43,10 @@ export async function renderPart(
 			await renderPart(context, subpart, x + anchorX, y + anchorY);
 		}
 	}
-	if (part.imagePath) {
-		const image = await imageDirectory.getImage('/botparts/' + part.imagePath);
+	if (part.name) {
+		const path = '/botparts/' + part.type + '/' + part.color + '/' + part.name + '.png';
+		console.log(path);
+		const image = await imageDirectory.getImage(path);
 		context.save();
 		context.resetTransform();
 		context.translate(x, y);
