@@ -1,11 +1,18 @@
 <script lang="ts">
 	import Bot from '$lib/bot.svelte';
+	import { randomKey, randomString } from '$lib/util';
 
 	let downloadFunc = null;
 	function download() {
 		if (downloadFunc) {
 			downloadFunc();
 		}
+	}
+
+	function randomize() {
+		randomKey().then((key) => {
+			seed = key;
+		});
 	}
 
 	let seed = '';
@@ -26,7 +33,7 @@
 				placeholder="Enter Public Key..."
 			/>
 			<div class="flex justify-center space-x-4">
-				<div class="btn btn-primary">Random</div>
+				<button class="btn btn-primary" on:click={randomize}>Random</button>
 				<div class="dropdown">
 					<button class="btn btn-primary">
 						Download

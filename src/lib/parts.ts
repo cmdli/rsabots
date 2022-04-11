@@ -138,7 +138,7 @@ class Pattern {
 }
 
 const UNCOLORED = ['none'];
-const METAL_COLORS = ['steel', 'silver', 'copper', 'gold'];
+const METAL_COLORS = ['silver'];
 
 const leftEyes = [
 	new PartData('eye', 'angry', 16, 14, new Anchor(0.5, 0.5)),
@@ -193,47 +193,47 @@ const symbols = [
 ].map((data) => new Pattern(data, UNCOLORED));
 
 const faces = [
-	new Pattern(new PartData('face', 'bullet', 72, 88, new Anchor(0.5, 0.9)), UNCOLORED)
+	new Pattern(new PartData('face', 'bullet', 72, 88, new Anchor(0.5, 0.9)), METAL_COLORS)
 		.addChoice([new Anchor(0.35, 0.3), new Anchor(0.75, 0.3)], eyes)
 		.addChoice(new Anchor(0.55, 0.55), mouths)
 		.addChoice(new Anchor(0.85, 0.12, -1), rightAntennae)
 		.addChoice(new Anchor(0.15, 0.12, -1), leftAntennae),
-	new Pattern(new PartData('face', 'diamond', 93, 68, new Anchor(0.5, 0.9)), UNCOLORED)
+	new Pattern(new PartData('face', 'diamond', 93, 68, new Anchor(0.5, 0.9)), METAL_COLORS)
 		.addChoice([new Anchor(0.33, 0.45), new Anchor(0.66, 0.45)], eyes)
 		.addChoice(new Anchor(0.5, 0.75), mouths)
 		.addChoice(new Anchor(0.75, 0.3, -1), rightAntennae)
 		.addChoice(new Anchor(0.25, 0.3, -1), leftAntennae),
-	new Pattern(new PartData('face', 'cap', 79, 51, new Anchor(0.5, 0.8)), UNCOLORED)
+	new Pattern(new PartData('face', 'cap', 79, 51, new Anchor(0.5, 0.8)), METAL_COLORS)
 		.addChoice([new Anchor(0.25, 0.5), new Anchor(0.75, 0.5)], eyes)
 		.addChoice(new Anchor(0.5, 0.7), mouths)
 		.addChoice(new Anchor(0.8, 0.3, -1), rightAntennae)
 		.addChoice(new Anchor(0.2, 0.3, -1), leftAntennae),
-	new Pattern(new PartData('face', 'circle', 75, 66, new Anchor(0.5, 0.8)), UNCOLORED)
+	new Pattern(new PartData('face', 'circle', 75, 66, new Anchor(0.5, 0.8)), METAL_COLORS)
 		.addChoice([new Anchor(0.25, 0.45), new Anchor(0.75, 0.35)], eyes)
 		.addChoice(new Anchor(0.55, 0.75), mouths)
 		.addChoice(new Anchor(0.8, 0.2, -1), rightAntennae)
 		.addChoice(new Anchor(0.2, 0.2, -1), leftAntennae),
-	new Pattern(new PartData('face', 'drill', 83, 76, new Anchor(0.5, 0.8)), UNCOLORED)
+	new Pattern(new PartData('face', 'drill', 83, 76, new Anchor(0.5, 0.8)), METAL_COLORS)
 		.addChoice([new Anchor(0.3, 0.25), new Anchor(0.7, 0.25)], eyes)
 		.addChoice(new Anchor(0.5, 0.65), mouths)
 		.addChoice(new Anchor(0.95, 0.12, -1), rightAntennae)
 		.addChoice(new Anchor(0.05, 0.12, -1), leftAntennae),
-	new Pattern(new PartData('face', 'hexagon', 79, 72, new Anchor(0.5, 0.8)), UNCOLORED)
+	new Pattern(new PartData('face', 'hexagon', 79, 72, new Anchor(0.5, 0.8)), METAL_COLORS)
 		.addChoice([new Anchor(0.25, 0.45), new Anchor(0.75, 0.45)], eyes)
 		.addChoice(new Anchor(0.45, 0.7), mouths)
 		.addChoice(new Anchor(0.75, 0.1, -1), rightAntennae)
 		.addChoice(new Anchor(0.25, 0.1, -1), leftAntennae),
-	new Pattern(new PartData('face', 'peanut', 108, 66, new Anchor(0.5, 0.9)), UNCOLORED)
+	new Pattern(new PartData('face', 'peanut', 108, 66, new Anchor(0.5, 0.9)), METAL_COLORS)
 		.addChoice([new Anchor(0.25, 0.4), new Anchor(0.75, 0.4)], eyes)
 		.addChoice(new Anchor(0.5, 0.4), mouths)
 		.addChoice(new Anchor(0.9, 0.15, -1), rightAntennae)
 		.addChoice(new Anchor(0.1, 0.15, -1), leftAntennae),
-	new Pattern(new PartData('face', 'pyramid', 83, 76, new Anchor(0.5, 0.9)), UNCOLORED)
+	new Pattern(new PartData('face', 'pyramid', 83, 76, new Anchor(0.5, 0.9)), METAL_COLORS)
 		.addChoice([new Anchor(0.25, 0.75), new Anchor(0.75, 0.75)], eyes)
 		.addChoice(new Anchor(0.5, 0.4), mouths)
 		.addChoice(new Anchor(0.7, 0.25, -1), rightAntennae)
 		.addChoice(new Anchor(0.3, 0.25, -1), leftAntennae),
-	new Pattern(new PartData('face', 'star', 105, 105, new Anchor(0.5, 0.8)), UNCOLORED)
+	new Pattern(new PartData('face', 'star', 105, 105, new Anchor(0.5, 0.8)), METAL_COLORS)
 		.addChoice([new Anchor(0.3, 0.5), new Anchor(0.7, 0.5)], eyes)
 		.addChoice(new Anchor(0.5, 0.65), mouths)
 		.addChoice(new Anchor(0.8, 0.4, -1), rightAntennae)
@@ -250,8 +250,8 @@ const armsData = [
 	new PartData('arm', 'square', 77, 69, new Anchor(0.1, 0.8)),
 	new PartData('arm', 'straight', 90, 65, new Anchor(0.08, 0.25))
 ];
-const rightArms = armsData.map((data) => new Pattern(data, UNCOLORED));
-const leftArms = armsData.map((data) => new Pattern(data.flipHorizontal(), UNCOLORED));
+const rightArms = armsData.map((data) => new Pattern(data, METAL_COLORS));
+const leftArms = armsData.map((data) => new Pattern(data.flipHorizontal(), METAL_COLORS));
 
 const legData = [
 	new PartData('leg', 'angle', 66, 90, new Anchor(0.27, 0.1)),
@@ -262,36 +262,36 @@ const legData = [
 	new PartData('leg', 'telescope', 57, 91, new Anchor(0.35, 0.1))
 ];
 const legPairs = legData.map((data) => [
-	new Pattern(data.flipHorizontal(), UNCOLORED),
-	new Pattern(data, UNCOLORED)
+	new Pattern(data.flipHorizontal(), METAL_COLORS),
+	new Pattern(data, METAL_COLORS)
 ]);
 
 const bodies = [
-	new Pattern(new PartData('body', 'square', 80, 115, new Anchor(0.5, 0.5)), UNCOLORED)
+	new Pattern(new PartData('body', 'square', 80, 115, new Anchor(0.5, 0.5)), METAL_COLORS)
 		.addChoice(new Anchor(0.5, 0.05), faces)
 		.addChoice(new Anchor(0.8, 0.4, -1), rightArms)
 		.addChoice(new Anchor(0.2, 0.4, -1), leftArms)
 		.addChoice([new Anchor(0.2, 0.9, -1), new Anchor(0.8, 0.9, -1)], legPairs)
 		.addChoice(new Anchor(0.7, 0.3), symbols),
-	new Pattern(new PartData('body', 'diamond', 142, 103, new Anchor(0.5, 0.5)), UNCOLORED)
+	new Pattern(new PartData('body', 'diamond', 142, 103, new Anchor(0.5, 0.5)), METAL_COLORS)
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
 		.addChoice([new Anchor(0.35, 0.75, -1), new Anchor(0.65, 0.75, -1)], legPairs)
 		.addChoice(new Anchor(0.3, 0.4), symbols),
-	new Pattern(new PartData('body', 'circle', 110, 104, new Anchor(0.5, 0.5)), UNCOLORED)
+	new Pattern(new PartData('body', 'circle', 110, 104, new Anchor(0.5, 0.5)), METAL_COLORS)
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.5, -1), leftArms)
 		.addChoice([new Anchor(0.2, 0.8, -1), new Anchor(0.8, 0.8, -1)], legPairs)
 		.addChoice(new Anchor(0.4, 0.7), symbols),
-	new Pattern(new PartData('body', 'drill', 105, 95, new Anchor(0.5, 0.5)), UNCOLORED)
+	new Pattern(new PartData('body', 'drill', 105, 95, new Anchor(0.5, 0.5)), METAL_COLORS)
 		.addChoice(new Anchor(0.5, 0.1), faces)
 		.addChoice(new Anchor(0.7, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.3, 0.5, -1), leftArms)
 		.addChoice([new Anchor(0.4, 0.7, -1), new Anchor(0.6, 0.7, -1)], legPairs)
 		.addChoice(new Anchor(0.7, 0.3), symbols),
-	new Pattern(new PartData('body', 'hexagon', 106, 97, new Anchor(0.5, 0.5)), UNCOLORED)
+	new Pattern(new PartData('body', 'hexagon', 106, 97, new Anchor(0.5, 0.5)), METAL_COLORS)
 		.addChoice(new Anchor(0.5, 0.1), faces)
 		.addChoice(new Anchor(0.8, 0.5, -1), rightArms)
 		.addChoice(new Anchor(0.2, 0.5, -1), leftArms)
@@ -302,7 +302,7 @@ const bodies = [
 	// 	.addChoice(new Anchor(0.8, 0.25, -1), rightArms)
 	// 	.addChoice(new Anchor(0.2, 0.25, -1), leftArms)
 	// 	.addChoice([new Anchor(0.2, 0.75, -1), new Anchor(0.8, 0.75, -1)], legPairs),
-	new Pattern(new PartData('body', 'star', 91, 91, new Anchor(0.5, 0.5)), UNCOLORED)
+	new Pattern(new PartData('body', 'star', 91, 91, new Anchor(0.5, 0.5)), METAL_COLORS)
 		.addChoice(new Anchor(0.5, 0.2), faces)
 		.addChoice(new Anchor(0.9, 0.2, -1), rightArms)
 		.addChoice(new Anchor(0.1, 0.2, -1), leftArms)

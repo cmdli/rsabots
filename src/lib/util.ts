@@ -22,3 +22,33 @@ export function makeClass(classList: string, classes: object): string {
 	}
 	return classList;
 }
+
+const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+export function randomString(length: number = 12): string {
+	let str = '';
+	for (let i = 0; i < length; i++) {
+		str += CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length));
+	}
+	return str;
+}
+
+export async function randomKey(): Promise<string> {
+	console.log('Randomizing');
+	const key = await crypto.subtle.generateKey(
+		{
+			name: 'ECDSA',
+			namedCurve: 'P-256'
+		},
+		true,
+		['sign']
+	);
+	console.log(key);
+	const keyBytes = await crypto.subtle.exportKey('spki', key.publicKey);
+	console.log(keyBytes);
+	return (
+		'-----BEGIN PUBLIC KEY-----\n' +
+		window.btoa(String.fromCharCode.apply(null, new Uint8Array(keyBytes))) +
+		'\n-----END PUBLIC KEY-----'
+	);
+}

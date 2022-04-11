@@ -45,7 +45,6 @@ export async function renderPart(
 	}
 	if (part.name) {
 		const path = '/botparts/' + part.type + '/' + part.color + '/' + part.name + '.png';
-		console.log(path);
 		const image = await imageDirectory.getImage(path);
 		context.save();
 		context.resetTransform();
