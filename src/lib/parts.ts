@@ -138,7 +138,7 @@ class Pattern {
 }
 
 const UNCOLORED = ['none'];
-const METAL_COLORS = ['silver'];
+const METAL_COLORS = ['silver', 'steel'];
 
 const leftEyes = [
 	new PartData('eye', 'angry', 16, 14, new Anchor(0.5, 0.5)),
