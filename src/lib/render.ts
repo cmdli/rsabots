@@ -36,8 +36,11 @@ class SvgDirectory {
 				.then((text) => {
 					const svgDocument = new DOMParser().parseFromString(text, 'image/svg+xml');
 					const svgElement = svgDocument.documentElement as unknown as SVGSVGElement;
-					svgElement.width.baseVal.valueAsString = svgElement.width.baseVal.value.toString();
-					svgElement.height.baseVal.valueAsString = svgElement.height.baseVal.value.toString();
+					const width = Math.floor(svgElement.width.baseVal.value).toString();
+					const height = Math.floor(svgElement.height.baseVal.value).toString();
+					console.log(`Adding width ${width} and height ${height} to ${path}`);
+					svgElement.width.baseVal.valueAsString = width;
+					svgElement.height.baseVal.valueAsString = height;
 					const base64EncodedSVG = window.btoa(new XMLSerializer().serializeToString(svgDocument));
 					const image = new Image();
 					image.src = 'data:image/svg+xml;base64,' + base64EncodedSVG;
