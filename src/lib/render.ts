@@ -43,6 +43,7 @@ class SvgDirectory {
 					svgElement.height.baseVal.valueAsString = height;
 					const base64EncodedSVG = window.btoa(new XMLSerializer().serializeToString(svgDocument));
 					const image = new Image();
+					console.log(base64EncodedSVG);
 					image.src = 'data:image/svg+xml;base64,' + base64EncodedSVG;
 					return image;
 				});
