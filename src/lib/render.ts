@@ -23,7 +23,34 @@ class ImageDirectory {
 	}
 }
 
+class SvgDirectory {
+	svgs: Map<string, Promise<HTMLImageElement>>;
+	constructor() {
+		this.svgs = new Map();
+	}
+
+	getSvg(path: string): Promise<HTMLImageElement> {
+		if (!this.svgs.has(path)) {
+			const promise = fetch(path)
+				.then((response) => response.text())
+				.then((text) => {
+					const svgDocument = new DOMParser().parseFromString(text, 'image/svg+xml');
+					const svgElement = svgDocument.documentElement as unknown as SVGSVGElement;
+					svgElement.width.baseVal.valueAsString = svgElement.width.baseVal.value.toString();
+					svgElement.height.baseVal.valueAsString = svgElement.height.baseVal.value.toString();
+					const base64EncodedSVG = window.btoa(new XMLSerializer().serializeToString(svgDocument));
+					const image = new Image();
+					image.src = 'data:image/svg+xml;base64,' + base64EncodedSVG;
+					return image;
+				});
+			this.svgs.set(path, promise);
+		}
+		return this.svgs.get(path);
+	}
+}
+
 const imageDirectory = new ImageDirectory();
+const svgDirectory = new SvgDirectory();
 
 export async function renderPart(
 	context: CanvasRenderingContext2D,
@@ -44,8 +71,8 @@ export async function renderPart(
 		}
 	}
 	if (part.name) {
-		const path = '/botparts/' + part.type + '/' + part.color + '/' + part.name + '.png';
-		const image = await imageDirectory.getImage(path);
+		const path = '/botparts/' + part.type + '/' + part.color + '/' + part.name + '.svg';
+		const image = await svgDirectory.getSvg(path);
 		context.save();
 		context.resetTransform();
 		context.translate(x, y);
