@@ -1,3 +1,4 @@
+import { loop } from 'svelte/internal';
 import type { PartData } from './parts';
 
 export const BOT_SCALE = 4;
@@ -34,22 +35,34 @@ class SvgDirectory {
 			const promise = fetch(path)
 				.then((response) => response.text())
 				.then((text) => {
-					const svgDocument = new DOMParser().parseFromString(text, 'image/svg+xml');
-					const svgElement = svgDocument.documentElement as unknown as SVGSVGElement;
-					const width = Math.floor(svgElement.width.baseVal.value).toString();
-					const height = Math.floor(svgElement.height.baseVal.value).toString();
-					console.log(`Adding width ${width} and height ${height} to ${path}`);
-					svgElement.width.baseVal.valueAsString = width;
-					svgElement.height.baseVal.valueAsString = height;
-					const base64EncodedSVG = window.btoa(new XMLSerializer().serializeToString(svgDocument));
+					const dataUrl = this.fixSvg(text);
 					const image = new Image();
-					console.log(base64EncodedSVG);
-					image.src = 'data:image/svg+xml;base64,' + base64EncodedSVG;
+					image.src = dataUrl;
 					return image;
 				});
 			this.svgs.set(path, promise);
 		}
 		return this.svgs.get(path);
+	}
+
+	putSvg(path: string, dataUrl: string) {
+		const b64Encoding = dataUrl.replace('data:image/svg+xml;base64,', '');
+		const xmlSvg = window.atob(b64Encoding);
+		const fixedDataUrl = this.fixSvg(xmlSvg);
+		const image = new Image();
+		image.src = fixedDataUrl;
+		this.svgs.set(path, Promise.resolve(image));
+	}
+
+	private fixSvg(text: string): string {
+		const svgDocument = new DOMParser().parseFromString(text, 'image/svg+xml');
+		const svgElement = svgDocument.documentElement as unknown as SVGSVGElement;
+		const width = Math.floor(svgElement.width.baseVal.value).toString();
+		const height = Math.floor(svgElement.height.baseVal.value).toString();
+		svgElement.width.baseVal.valueAsString = width;
+		svgElement.height.baseVal.valueAsString = height;
+		const base64EncodedSVG = window.btoa(new XMLSerializer().serializeToString(svgDocument));
+		return 'data:image/svg+xml;base64,' + base64EncodedSVG;
 	}
 }
 
@@ -135,4 +148,16 @@ export function downloadAsImage(canvas: HTMLCanvasElement, downloadName: string)
 	downloadLink.href = data;
 	downloadLink.download = downloadName;
 	downloadLink.click();
+}
+
+export function downloadAssets() {
+	const request = new XMLHttpRequest();
+	request.onload = () => {
+		const files = JSON.parse(request.response);
+		for (const filename in files) {
+			svgDirectory.putSvg(filename, files[filename]);
+		}
+	};
+	request.open('GET', '/assets.json');
+	request.send();
 }

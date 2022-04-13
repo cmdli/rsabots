@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import Bot from '$lib/bot.svelte';
 	import { randomKey, randomString } from '$lib/util';
+	import { downloadAssets } from '$lib/render';
 
 	let downloadFunc = null;
 	function download() {
@@ -14,6 +16,10 @@
 			seed = key;
 		});
 	}
+
+	onMount(() => {
+		downloadAssets();
+	});
 
 	let seed = '';
 </script>
