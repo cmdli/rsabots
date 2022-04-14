@@ -17,10 +17,6 @@
 		});
 	}
 
-	onMount(() => {
-		downloadAssets();
-	});
-
 	let seed = '';
 </script>
 

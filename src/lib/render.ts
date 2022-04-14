@@ -25,24 +25,31 @@ class ImageDirectory {
 }
 
 class SvgDirectory {
-	svgs: Map<string, Promise<HTMLImageElement>>;
+	svgs: Map<string, HTMLImageElement>;
+	assets: Promise<void>;
 	constructor() {
 		this.svgs = new Map();
 	}
 
 	getSvg(path: string): Promise<HTMLImageElement> {
 		if (!this.svgs.has(path)) {
-			const promise = fetch(path)
-				.then((response) => response.text())
-				.then((text) => {
-					const dataUrl = this.fixSvg(text);
-					const image = new Image();
-					image.src = dataUrl;
-					return image;
+			return new Promise((resolve) => {
+				if (!this.assets) {
+					this.assets = fetch('/assets.json')
+						.then((response) => response.text())
+						.then((text) => {
+							const files = JSON.parse(text);
+							for (const filename in files) {
+								this.putSvg(filename, files[filename]);
+							}
+						});
+				}
+				this.assets.then(() => {
+					resolve(this.svgs.get(path));
 				});
-			this.svgs.set(path, promise);
+			});
 		}
-		return this.svgs.get(path);
+		return Promise.resolve(this.svgs.get(path));
 	}
 
 	putSvg(path: string, dataUrl: string) {
@@ -51,7 +58,7 @@ class SvgDirectory {
 		const fixedDataUrl = this.fixSvg(xmlSvg);
 		const image = new Image();
 		image.src = fixedDataUrl;
-		this.svgs.set(path, Promise.resolve(image));
+		this.svgs.set(path, image);
 	}
 
 	private fixSvg(text: string): string {
