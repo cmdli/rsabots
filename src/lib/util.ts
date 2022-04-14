@@ -22,6 +22,14 @@ export function makeClass(classList: string, classes: object): string {
 	}
 	return classList;
 }
+export function shuffle<A>(arr: A[]) {
+	for (let i = 0; i < arr.length; i++) {
+		let j = Math.floor(Math.random() * (arr.length - i)) + i;
+		let tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+	}
+}
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
