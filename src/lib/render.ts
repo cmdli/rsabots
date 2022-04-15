@@ -3,6 +3,18 @@ import type { PartData } from './parts';
 
 export const BOT_SCALE = 4;
 
+async function waitForLoad(image: HTMLImageElement): Promise<HTMLImageElement> {
+	if (image.complete) {
+		return Promise.resolve(image);
+	} else {
+		return new Promise((resolve) => {
+			image.onload = () => {
+				resolve(image);
+			};
+		});
+	}
+}
+
 class ImageDirectory {
 	images: Map<string, Promise<HTMLImageElement>>;
 	constructor() {
@@ -39,10 +51,11 @@ class SvgDirectory {
 						.then((response) => response.text())
 						.then((text) => {
 							const files = JSON.parse(text);
-							for (const filename in files) {
-								this.putSvg(filename, files[filename]);
-							}
-						});
+							return Promise.all(
+								Object.keys(files).map((filename) => this.putSvg(filename, files[filename]))
+							);
+						})
+						.then();
 				}
 				this.assets.then(() => {
 					resolve(this.svgs.get(path));
@@ -52,13 +65,14 @@ class SvgDirectory {
 		return Promise.resolve(this.svgs.get(path));
 	}
 
-	putSvg(path: string, dataUrl: string) {
+	async putSvg(path: string, dataUrl: string): Promise<HTMLImageElement> {
 		const b64Encoding = dataUrl.replace('data:image/svg+xml;base64,', '');
 		const xmlSvg = window.atob(b64Encoding);
 		const fixedDataUrl = this.fixSvg(xmlSvg);
 		const image = new Image();
 		image.src = fixedDataUrl;
 		this.svgs.set(path, image);
+		return waitForLoad(image);
 	}
 
 	private fixSvg(text: string): string {
@@ -97,6 +111,7 @@ export async function renderPart(
 	if (part.name) {
 		const path = '/botparts/' + part.type + '/' + part.color + '/' + part.name + '.svg';
 		const image = await svgDirectory.getSvg(path);
+		console.log(JSON.stringify(image));
 		context.save();
 		context.resetTransform();
 		context.translate(x, y);

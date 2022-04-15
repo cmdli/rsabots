@@ -48,12 +48,40 @@
 				</div>
 			</div>
 		</div>
-		<div class="mt-36 w-[36rem] max-w-full">
-			<h2 class="mb-0 text-4xl">How It Works</h2>
-			<p class="mt-0">Lorem ipsum</p>
+		<div class="prose mt-36 w-[48rem] max-w-full">
+			<h2 id="about" class="">How It Works</h2>
+			<p class="">
+				RSA Bots takes your name, public key, or whatever data you provide, and generates random
+				bits with it using <a class="link" href="https://en.wikipedia.org/wiki/PBKDF2">PBKDF2</a>.
+				Using these bits, it randomly selects arms, legs, torsos, heads, and other robotic parts to
+				generate a unique robot for the data you provide. There are currently 2^35 possible robots,
+				which is enough for everybody on the planet to have several bots to their name.
+			</p>
+			<p class="">
+				Note: 35 bits of entropy isn't enough to be considered “cryptographically secure” on its
+				own. It is entirely feasible to find collisions between the bots, so I wouldn't recommend
+				using these bots for anything important. Or do. I'm a website, not a cop.
+			</p>
+			<h2 class="">License</h2>
+			<p class="">
+				These robot images are distributed under a
+				<a class="link" href="https://creativecommons.org/licenses/by/4.0/"
+					>Creative Commons License</a
+				>
+				(CC Attribution 4.0). The source code for this site is
+				<a class="link" href="https://github.com/cmdli/rsabots/blob/master/LICENSE">MIT Licensed</a
+				>.
+			</p>
+			<h2 class="">About Me</h2>
+			<p class="mb-16">
+				Hi, I'm Chris de la Iglesia. I'm a software engineer currently working on software solutions
+				powered by cryptography, and I thought this would be a fun little side project in the
+				meantime. See more at <a class="link" href="https://cmdli.dev">cmdli.dev</a>.
+			</p>
 		</div>
 	</div>
 </div>
+<div class="mt-16">.</div>
 
 <style>
 	.arrow {
