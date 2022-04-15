@@ -164,11 +164,11 @@ export async function renderDebugOverlay(
 	}
 }
 
-export function downloadAsImage(canvas: HTMLCanvasElement, downloadName: string) {
-	const data = canvas.toDataURL('image/png');
+export function downloadAsImage(canvas: HTMLCanvasElement, type: string, downloadName: string) {
+	const data = canvas.toDataURL('image/' + type);
 	const downloadLink = document.createElement('a') as HTMLAnchorElement;
 	downloadLink.href = data;
-	downloadLink.download = downloadName;
+	downloadLink.download = downloadName + '.' + type;
 	downloadLink.click();
 }
 

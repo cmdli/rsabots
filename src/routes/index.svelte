@@ -5,9 +5,9 @@
 	import { downloadAssets } from '$lib/render';
 
 	let downloadFunc = null;
-	function download() {
+	function download(type: string) {
 		if (downloadFunc) {
-			downloadFunc();
+			downloadFunc(type);
 		}
 	}
 
@@ -36,14 +36,26 @@
 			/>
 			<div class="flex justify-center space-x-4">
 				<button class="btn btn-primary" on:click={randomize}>Random</button>
-				<div class="dropdown">
+				<div class="dropdown dropdown-top">
 					<button class="btn btn-primary">
 						Download
 						<div class="arrow" />
 					</button>
 					<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
-						<li><a href="/">SVG</a></li>
-						<li><a href="/" on:click={download}>PNG</a></li>
+						<li>
+							<a
+								on:click={() => {
+									download('jpg');
+								}}>JPEG</a
+							>
+						</li>
+						<li>
+							<a
+								on:click={() => {
+									download('png');
+								}}>PNG</a
+							>
+						</li>
 					</ul>
 				</div>
 			</div>

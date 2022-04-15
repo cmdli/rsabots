@@ -4,7 +4,7 @@
 	import { renderPart, BOT_SCALE, downloadAsImage, renderDebugOverlay } from './render';
 
 	export let part: PartData;
-	export let registerDownload: (func: () => void) => void;
+	export let registerDownload: (func: (type: string) => void) => void;
 
 	onMount(() => {
 		const canvas = document.getElementById('canvas-bot') as HTMLCanvasElement;
@@ -16,9 +16,9 @@
 		});
 	});
 
-	function download() {
+	function download(type: string) {
 		const canvas = document.getElementById('canvas-bot') as HTMLCanvasElement;
-		downloadAsImage(canvas, 'bot.png');
+		downloadAsImage(canvas, type, 'bot');
 	}
 	if (registerDownload) {
 		registerDownload(download);
