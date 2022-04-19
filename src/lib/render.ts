@@ -62,7 +62,6 @@ class SvgDirectory {
 				});
 			});
 		}
-		document.body.append(this.svgs.get(path));
 		return Promise.resolve(this.svgs.get(path));
 	}
 
