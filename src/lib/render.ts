@@ -5,7 +5,6 @@ export const BOT_SCALE = 4;
 
 async function waitForLoad(image: HTMLImageElement): Promise<HTMLImageElement> {
 	if (image.complete) {
-		console.log('Image complete');
 		return Promise.resolve(image);
 	} else {
 		return new Promise((resolve) => {
