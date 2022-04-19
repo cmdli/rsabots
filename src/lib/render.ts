@@ -4,15 +4,19 @@ import type { PartData } from './parts';
 export const BOT_SCALE = 4;
 
 async function waitForLoad(image: HTMLImageElement): Promise<HTMLImageElement> {
-	if (image.complete) {
-		return Promise.resolve(image);
-	} else {
-		return new Promise((resolve) => {
-			image.onload = () => {
+	// if (image.complete) {
+	// 	console.log('Image complete');
+	// 	return Promise.resolve(image);
+	// } else {
+	return new Promise((resolve) => {
+		image.onload = () => {
+			console.log(JSON.stringify(image), image.src);
+			setTimeout(() => {
 				resolve(image);
-			};
-		});
-	}
+			}, 1000);
+		};
+	});
+	// }
 }
 
 class ImageDirectory {
@@ -62,27 +66,34 @@ class SvgDirectory {
 				});
 			});
 		}
+		document.body.append(this.svgs.get(path));
 		return Promise.resolve(this.svgs.get(path));
 	}
 
 	async putSvg(path: string, dataUrl: string): Promise<HTMLImageElement> {
-		const b64Encoding = dataUrl.replace('data:image/svg+xml;base64,', '');
-		const xmlSvg = window.atob(b64Encoding);
-		const fixedDataUrl = this.fixSvg(xmlSvg);
+		const xmlSvg = this.fromDataUrl(dataUrl);
+		const svgDocument = new DOMParser().parseFromString(xmlSvg, 'image/svg+xml');
+		const svgElement = svgDocument.documentElement as unknown as SVGSVGElement;
+		const width = Math.floor(svgElement.width.baseVal.value);
+		const height = Math.floor(svgElement.height.baseVal.value);
+		if (width !== 0 && height !== 0) {
+			svgElement.width.baseVal.valueAsString = width.toString();
+			svgElement.height.baseVal.valueAsString = height.toString();
+		}
+		const fixedDataUrl = this.toDataUrl(new XMLSerializer().serializeToString(svgDocument));
 		const image = new Image();
 		image.src = fixedDataUrl;
 		this.svgs.set(path, image);
 		return waitForLoad(image);
 	}
 
-	private fixSvg(text: string): string {
-		const svgDocument = new DOMParser().parseFromString(text, 'image/svg+xml');
-		const svgElement = svgDocument.documentElement as unknown as SVGSVGElement;
-		const width = Math.floor(svgElement.width.baseVal.value).toString();
-		const height = Math.floor(svgElement.height.baseVal.value).toString();
-		svgElement.width.baseVal.valueAsString = width;
-		svgElement.height.baseVal.valueAsString = height;
-		const base64EncodedSVG = window.btoa(new XMLSerializer().serializeToString(svgDocument));
+	private fromDataUrl(dataUrl: string): string {
+		const b64Encoding = dataUrl.replace('data:image/svg+xml;base64,', '');
+		return window.atob(b64Encoding);
+	}
+
+	private toDataUrl(text: string): string {
+		const base64EncodedSVG = window.btoa(text);
 		return 'data:image/svg+xml;base64,' + base64EncodedSVG;
 	}
 }
@@ -111,7 +122,8 @@ export async function renderPart(
 	if (part.name) {
 		const path = '/botparts/' + part.type + '/' + part.color + '/' + part.name + '.svg';
 		const image = await svgDirectory.getSvg(path);
-		console.log(JSON.stringify(image));
+		image.width = part.width;
+		image.height = part.height;
 		context.save();
 		context.resetTransform();
 		context.translate(x, y);
