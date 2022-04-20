@@ -32,7 +32,7 @@
 			<textarea
 				bind:value={seed}
 				class="textarea textarea-info w-full"
-				placeholder="Enter Public Key..."
+				placeholder="Enter public key, name, other data..."
 			/>
 			<div class="flex justify-center space-x-4">
 				<button class="btn btn-primary" on:click={randomize}>Random</button>
